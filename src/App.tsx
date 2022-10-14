@@ -1,11 +1,7 @@
-import { TextInput } from './components/TextInput';
-
 export function App() {
   return(
     <div>
-      <TextInput.Root>
-        <TextInput.Input />
-      </TextInput.Root>
+     <h1>Master</h1>
     </div>
   );
 }
