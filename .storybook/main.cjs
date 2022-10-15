@@ -14,14 +14,17 @@ module.exports = {
     "builder": "@storybook/builder-vite"
   },
   "features": {
-    "storyStoreV7": true
+    "storyStoreV7": true,
+    "interactionDebugger": true
   },
+  "staticDirs": [
+    "../public"
+  ],
   // caso o caminho seja fixo: "www.example.com.br" não precisa fazer esse ajuste
   viteFinal: (config, { configType }) => {
     if(configType === "PRODUCTION") {
       config.base = '/rocketseat-ignite-lab-design-system'
     }
-
     return config;
   }
 }
