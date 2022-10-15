@@ -3,10 +3,11 @@ import { Check } from 'phosphor-react';
 
 import { getClassName } from '../../utils/getClassName';
 
-export interface CheckboxProps {
+export interface CheckboxProps extends CheckboxPrimitive.CheckboxProps {
+
 };
 
-export function Checkbox({  }: CheckboxProps) {
+export function Checkbox(props: CheckboxProps) {
    const styles = {
       checkbox: 'w-6 h-6 p-[2px] rounded',
       bg: 'bg-gray-800'
@@ -15,7 +16,7 @@ export function Checkbox({  }: CheckboxProps) {
    const className = getClassName(styles);
 
    return(
-     <CheckboxPrimitive.Root className={className}>
+     <CheckboxPrimitive.Root className={className} {...props}>
          <CheckboxPrimitive.Indicator asChild>
             <Check weight="bold" className="h-5 w-5 text-cyan-500" />
          </CheckboxPrimitive.Indicator>
