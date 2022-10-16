@@ -12,20 +12,31 @@ import { TextInput } from "../components/TextInput";
 import { getClassName } from '../utils/getClassName';
 import { delay } from "../utils/delay";
 
-export function SignIn() {
+export function SignIn() {  
+   const [loading, setLoading] = useState(false);
    const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
    async function handleSignIn(event: FormEvent) {
       event.preventDefault();
-      await delay(2000);
+      setLoading(true);
 
-      axios.post('/sessions', { 
-         email: 'raphael.capeto@test.com',
-         password: '123456',
-      });
+      try {
+        await delay(2000);
+
+        await axios.post('/sessions', { 
+          email: 'raphael.capeto@test.com',
+          password: '123456',
+       });
+      } catch(err) {
+        console.error("Error Login", err);
+      } finally {
+        setLoading(false);
+      }
+
+    
 
       setIsUserSignedIn(state => !state);
-   }
+   };
 
   const styles = {
     container: {
@@ -117,7 +128,7 @@ export function SignIn() {
         </label>
 
         <Button type="submit" className="mt-4">
-          Entrar na plataforma
+          { loading ? 'Carregando...' : 'Entrar na plataforma' }
         </Button>
       </form>
 
